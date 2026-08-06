@@ -1,23 +1,9 @@
-# Interview notes — agent-loop-field-guide
+﻿# Interview talking points — agent-loop-field-guide
 
-## Three questions
+Five CLI-backed points for a technical screen (no resume recap).
 
-1. Why fill a Loop Contract before scheduling an agent loop?
-2. Which of the five decisions is missing when teams only write a clever system prompt?
-3. How does this guide relate to `agent-loop-engine` without being a second framework?
-
-## Two-minute demo
-
-```bash
-git clone https://github.com/homayoun-safarpour/agent-loop-field-guide
-cd agent-loop-field-guide
-cp templates/LOOP_CONTRACT.md /tmp/demo_contract.md
-python scripts/check_contract.py templates/LOOP_CONTRACT.md
-# open docs/FIELD_GUIDE.md → "What the best sources agree on"
-```
-
-## Limitations
-
-- Templates and a heading checker only; no runtime loop.
-- Source synthesis is paraphrased attribution, not a substitute for reading Anthropic / Willison / loop-engineering primary docs.
-- Exit code `2` means missing headings, not that the filled answers are good engineering judgments.
+- **`cp templates/LOOP_CONTRACT.md ../YOUR_PROJECT/LOOP_CONTRACT.md`** — copy the blank contract before cron, `/loop`, or any autonomous coding agent; empty cells mean you are still prompting, not operating.
+- **`python scripts/check_contract.py templates/LOOP_CONTRACT.md`** — verifies the five decision headings (`Done`, `Verifier`, `Stop layers`, `State file`, `Irreversible`); exit **0** when headings exist.
+- **Remove a heading and re-run `check_contract.py`** — exit **2** lists missing sections; the checker does not judge whether your answers are good, only that the contract is structurally complete.
+- **`templates/sample_filled.md`** — worked example of filled cells; compare your project copy against it before you trust “done” in chat.
+- **Pair with `loop-engine tick` from [agent-loop-engine](https://github.com/homayoun-safarpour/agent-loop-engine)** — this repo is templates plus synthesis; the engine runs gates and journal ticks once the contract names your verifier commands.
