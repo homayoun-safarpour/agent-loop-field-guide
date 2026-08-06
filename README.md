@@ -35,6 +35,7 @@ Read the full synthesis: [docs/FIELD_GUIDE.md](docs/FIELD_GUIDE.md)
 | [docs/FIELD_GUIDE.md](docs/FIELD_GUIDE.md) | Consensus from Anthropic, Willison, loop-engineering, Ralph/harness lineage |
 | [templates/LOOP_CONTRACT.md](templates/LOOP_CONTRACT.md) | Blank five-decision contract |
 | [templates/sample_filled.md](templates/sample_filled.md) | Filled example tied to agent-loop-engine |
+| [templates/sample_ci_triage.md](templates/sample_ci_triage.md) | Filled example for a CI / PR triage loop |
 | [scripts/check_contract.py](scripts/check_contract.py) | Verifies required headings exist (exit 0/2) |
 
 ## The five decisions (preview)
