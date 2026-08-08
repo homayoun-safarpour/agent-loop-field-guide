@@ -55,6 +55,8 @@ Read the full synthesis: [docs/FIELD_GUIDE.md](docs/FIELD_GUIDE.md)
 - [agent-loop-engine](https://github.com/homayoun-safarpour/agent-loop-engine) - markdown state, quality gates, one tick, journal
 - [judge-drift-sentinel](https://github.com/homayoun-safarpour/judge-drift-sentinel) - judge vs system drift gate
 - [trace-gate](https://github.com/homayoun-safarpour/trace-gate) - trajectory regression gate
+- [judge-field-guide](https://github.com/homayoun-safarpour/judge-field-guide) - link-checked map of the LLM-judge ecosystem
+- [ai-eng-skill-range](https://github.com/homayoun-safarpour/ai-eng-skill-range) - graded katas for the same hire skills
 
 ## Field alignment
 
