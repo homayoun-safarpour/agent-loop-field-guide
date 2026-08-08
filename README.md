@@ -18,6 +18,8 @@ Copy the blank Loop Contract into your project **before** you automate. This rep
 
 ## Quickstart (under 5 minutes)
 
+Interview pack: [docs/INTERVIEW.md](docs/INTERVIEW.md).
+
 Claim boundaries: [docs/RELIABILITY_CARD.md](docs/RELIABILITY_CARD.md).
 
 ```bash
