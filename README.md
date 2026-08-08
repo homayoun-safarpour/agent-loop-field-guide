@@ -18,6 +18,8 @@ Copy the blank Loop Contract into your project **before** you automate. This rep
 
 ## Quickstart (under 5 minutes)
 
+Claim boundaries: [docs/RELIABILITY_CARD.md](docs/RELIABILITY_CARD.md).
+
 ```bash
 git clone https://github.com/homayoun-safarpour/agent-loop-field-guide
 cd agent-loop-field-guide
