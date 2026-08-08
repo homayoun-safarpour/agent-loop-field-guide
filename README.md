@@ -1,4 +1,4 @@
-# agent-loop-field-guide
+﻿# agent-loop-field-guide
 
 **You are about to run an agent loop. If "done" only lives in the model's head and progress only lives in chat, the loop will waste money or ship broken work. Fill this contract first.**
 
@@ -38,6 +38,7 @@ Read the full synthesis: [docs/FIELD_GUIDE.md](docs/FIELD_GUIDE.md)
 | [templates/LOOP_CONTRACT.md](templates/LOOP_CONTRACT.md) | Blank five-decision contract |
 | [templates/sample_filled.md](templates/sample_filled.md) | Filled example tied to agent-loop-engine |
 | [scripts/check_contract.py](scripts/check_contract.py) | Verifies required headings exist (exit 0/2) |
+| [examples/](examples/) | Pointer to filled sample + checker command |
 
 ## The five decisions (preview)
 
@@ -59,7 +60,7 @@ Fill the contract before `/loop` or cron. Claim boundaries: [docs/RELIABILITY_CA
 
 ## Author
 
-Homayoun Safarpour · [LinkedIn](https://www.linkedin.com/in/homayoun-safarpour/)
+Homayoun Safarpour - [LinkedIn](https://www.linkedin.com/in/homayoun-safarpour/)
 
 ## License
 
