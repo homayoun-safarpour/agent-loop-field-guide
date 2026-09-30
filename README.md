@@ -1,11 +1,29 @@
-﻿# agent-loop-field-guide
+# loop-contract
 
-**You are about to run an agent loop. If "done" only lives in the model's head and progress only lives in chat, the loop will waste money or ship broken work. Fill this contract first.**
+**You are about to run an agent loop. If "done" only lives in the model's head, the loop will waste money or ship broken work.**
 
 [![CI](https://github.com/homayoun-safarpour/agent-loop-field-guide/actions/workflows/ci.yml/badge.svg)](https://github.com/homayoun-safarpour/agent-loop-field-guide/actions/workflows/ci.yml)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-Copy the blank Loop Contract into your project **before** you automate. This repo is a field guide plus templates, not a runtime. For a deterministic tick engine (state, gates, one action, journal), use [agent-loop-engine](https://github.com/homayoun-safarpour/agent-loop-engine).
+Fill a five-decision Loop Contract before you automate an agent loop. Field guide + templates + heading checker.
+
+```bash
+git clone https://github.com/homayoun-safarpour/agent-loop-field-guide
+cd agent-loop-field-guide
+python scripts/check_contract.py examples/incomplete_contract.md
+```
+
+```text
+FAIL: missing headings:
+  - ## 2. Verifier
+  - ## 3. Stop layers
+  - ## 4. State file
+  - ## 5. Irreversible
+```
+
+That command exits 2. There is no pip install. The checker is stdlib.
+
+The blank template (`templates/LOOP_CONTRACT.md`) exits 0 because the headings exist. Empty cells still mean you are prompting.
 
 ## Use this when
 
@@ -16,18 +34,26 @@ Copy the blank Loop Contract into your project **before** you automate. This rep
 | You want a runnable decision policy in Python | No - use [agent-loop-engine](https://github.com/homayoun-safarpour/agent-loop-engine) |
 | You want another agent framework | No |
 
-## Quickstart (under 5 minutes)
+This repo is a field guide plus templates, not a runtime.
+
+## Quickstart
 
 Interview pack: [docs/INTERVIEW.md](docs/INTERVIEW.md).
 
 Claim boundaries: [docs/RELIABILITY_CARD.md](docs/RELIABILITY_CARD.md).
 
+Copy the blank contract into your project before you automate:
+
 ```bash
-git clone https://github.com/homayoun-safarpour/agent-loop-field-guide
-cd agent-loop-field-guide
+# Unix
 cp templates/LOOP_CONTRACT.md ../YOUR_PROJECT/LOOP_CONTRACT.md
-# fill every section - empty cells mean you are still prompting
+# Windows PowerShell
+Copy-Item templates/LOOP_CONTRACT.md ..\YOUR_PROJECT\LOOP_CONTRACT.md
 python scripts/check_contract.py templates/LOOP_CONTRACT.md
+```
+
+```text
+PASS: templates/LOOP_CONTRACT.md has all five Loop Contract headings
 ```
 
 Read the full synthesis: [docs/FIELD_GUIDE.md](docs/FIELD_GUIDE.md)
@@ -40,7 +66,7 @@ Read the full synthesis: [docs/FIELD_GUIDE.md](docs/FIELD_GUIDE.md)
 | [templates/LOOP_CONTRACT.md](templates/LOOP_CONTRACT.md) | Blank five-decision contract |
 | [templates/sample_filled.md](templates/sample_filled.md) | Filled example tied to agent-loop-engine |
 | [scripts/check_contract.py](scripts/check_contract.py) | Verifies required headings exist (exit 0/2) |
-| [examples/](examples/) | Pointer to filled sample + checker command |
+| [examples/incomplete_contract.md](examples/incomplete_contract.md) | Stranger fail path (exit 2) |
 
 ## The five decisions (preview)
 
@@ -64,7 +90,7 @@ Fill the contract before `/loop` or cron. Claim boundaries: [docs/RELIABILITY_CA
 
 ## Author
 
-Homayoun Safarpour - [LinkedIn](https://www.linkedin.com/in/homayoun-safarpour/)
+Homayoun Safarpour. [LinkedIn](https://www.linkedin.com/in/homayoun-safarpour/)
 
 ## License
 
