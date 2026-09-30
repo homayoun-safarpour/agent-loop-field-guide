@@ -65,7 +65,7 @@ Read the full synthesis: [docs/FIELD_GUIDE.md](docs/FIELD_GUIDE.md)
 | [docs/FIELD_GUIDE.md](docs/FIELD_GUIDE.md) | Consensus from Anthropic, Willison, loop-engineering, Ralph/harness lineage |
 | [templates/LOOP_CONTRACT.md](templates/LOOP_CONTRACT.md) | Blank five-decision contract |
 | [templates/sample_filled.md](templates/sample_filled.md) | Filled example tied to agent-loop-engine |
-| [scripts/check_contract.py](scripts/check_contract.py) | Verifies required headings exist (exit 0/2) |
+| [scripts/check_contract.py](scripts/check_contract.py) | Verifies required headings exist (exit 0/2); `--strict` also fails on empty sections |
 | [examples/incomplete_contract.md](examples/incomplete_contract.md) | Stranger fail path (exit 2) |
 
 ## The five decisions (preview)
