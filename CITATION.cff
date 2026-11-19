@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "agent-loop-field-guide"
+type: software
+authors:
+  - family-names: Safarpour
+    given-names: Homayoun
+    affiliation: "University of Limerick"
+repository-code: "https://github.com/homayoun-safarpour/agent-loop-field-guide"
+url: "https://homayoun-safarpour.github.io"
+license: MIT
+abstract: "Fill a five-decision Loop Contract before you automate an agent loop. Field guide + templates + heading checker."
+keywords:
+  - "agent-loop"
+  - "agentic-ai"
+  - "documentation"
+  - "llm-agents"
+  - "llm-evaluation"
+  - "python"

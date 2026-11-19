@@ -1,4 +1,4 @@
-# Reliability card — agent-loop-field-guide
+# Reliability card: agent-loop-field-guide
 
 | Field | Value |
 | --- | --- |
