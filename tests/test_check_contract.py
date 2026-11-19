@@ -29,3 +29,13 @@ def test_truncated_contract_exits_2(tmp_path: Path):
         check=False,
     )
     assert proc.returncode == 2
+
+def test_missing_file_exits_1_with_stderr(tmp_path: Path):
+    proc = subprocess.run(
+        [sys.executable, str(SCRIPT), str(tmp_path / "no_such_contract.md")],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert proc.returncode == 1
+    assert "not a file" in proc.stderr
