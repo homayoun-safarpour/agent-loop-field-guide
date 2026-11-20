@@ -5,7 +5,7 @@
 [![CI](https://github.com/homayoun-safarpour/agent-loop-field-guide/actions/workflows/ci.yml/badge.svg)](https://github.com/homayoun-safarpour/agent-loop-field-guide/actions/workflows/ci.yml)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-A five-decision Loop Contract to fill before you automate an agent loop, with a heading checker (exit 0 or 2).
+Agent reliability: a five-decision Loop Contract to fill before you automate an agent loop, with a heading checker (exit 0 or 2).
 
 loop-contract is a field guide, a blank contract and a small checker for anyone about to run an AI agent in a loop, such as a `/loop`, a cron job or an autonomous coding agent. We built it because a loop that stops only when the model feels done can waste money or ship broken work, and the sources in the guide agree that done must be a check a machine can run. Given a contract file, `check_contract.py` looks for the five decision headings and returns exit 0 when all are present, or exit 2 with the missing ones, so that a CI job can stop before the loop starts.
 
@@ -23,6 +23,10 @@ FAIL: missing headings:
 ```
 
 That command exits 2. The same check on `templates/LOOP_CONTRACT.md` exits 0. There is nothing to pip install, because the checker uses only the Python standard library.
+
+![agent-loop-field-guide: loop contract is checked by five decision headings; the result is FAIL with exit 2](docs/readme-flow.svg)
+
+[How it works](#how-it-works) · [Results](#what-each-result-means) · [Limits](#limits) · [Interview pack](docs/INTERVIEW.md) · [Cite](#citation) · Part of [a small open stack for checking AI agents and their judges](https://homayoun-safarpour.github.io)
 
 ## What each result means
 
