@@ -56,13 +56,13 @@ Before you automate, write these five decisions down.
 
 If any cell is empty, you are still prompting, not looping.
 
-Validate headings locally:
+Validate your filled copy locally:
 
 ```bash
-python scripts/check_contract.py templates/LOOP_CONTRACT.md
+python scripts/check_contract.py YOUR_PROJECT/LOOP_CONTRACT.md
 ```
 
-Exit `0` = required sections present. Exit `2` = missing headings.
+Exit `0` = all five sections present and filled. Exit `2` = missing headings or empty sections (the blank template exits `2`).
 
 ## Filesystem and git as memory
 
@@ -108,7 +108,7 @@ git clone https://github.com/homayoun-safarpour/agent-loop-field-guide
 cd agent-loop-field-guide
 cp templates/LOOP_CONTRACT.md /tmp/LOOP_CONTRACT.md
 # edit /tmp/LOOP_CONTRACT.md for your project
-python scripts/check_contract.py templates/LOOP_CONTRACT.md
+python scripts/check_contract.py /tmp/LOOP_CONTRACT.md
 # optional: run a real tick engine
 # https://github.com/homayoun-safarpour/agent-loop-engine
 ```

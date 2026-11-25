@@ -5,9 +5,9 @@
 [![CI](https://github.com/homayoun-safarpour/agent-loop-field-guide/actions/workflows/ci.yml/badge.svg)](https://github.com/homayoun-safarpour/agent-loop-field-guide/actions/workflows/ci.yml)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-Agent reliability: a five-decision Loop Contract to fill before you automate an agent loop, with a heading checker (exit 0 or 2).
+Agent reliability: a five-decision Loop Contract to fill before you automate an agent loop, with a section checker (exit 0 or 2).
 
-loop-contract is a field guide, a blank contract and a small checker for anyone about to run an AI agent in a loop, such as a `/loop`, a cron job or an autonomous coding agent. We built it because a loop that stops only when the model feels done can waste money or ship broken work, and the sources in the guide agree that done must be a check a machine can run. Given a contract file, `check_contract.py` looks for the five decision headings and returns exit 0 when all are present, or exit 2 with the missing ones, so that a CI job can stop before the loop starts.
+loop-contract is a field guide, a blank contract and a small checker for anyone about to run an AI agent in a loop, such as a `/loop`, a cron job or an autonomous coding agent. We built it because a loop that stops only when the model feels done can waste money or ship broken work, and the sources in the guide agree that done must be a check a machine can run. Given a contract file, `check_contract.py` looks for the five decision headings with an answer under each, and returns exit 0 when all are present and filled, or exit 2 with the missing or empty ones, so that a CI job can stop before the loop starts.
 
 ```bash
 git clone https://github.com/homayoun-safarpour/agent-loop-field-guide
@@ -22,7 +22,7 @@ FAIL: missing headings:
   - ## 5. Irreversible
 ```
 
-That command exits 2. The same check on `templates/LOOP_CONTRACT.md` exits 0. There is nothing to pip install, because the checker uses only the Python standard library.
+That command exits 2. The blank `templates/LOOP_CONTRACT.md` exits 2 as well, with all five sections listed as empty, until you fill it. There is nothing to pip install, because the checker uses only the Python standard library.
 
 ![agent-loop-field-guide: loop contract is checked by five decision headings; the result is FAIL with exit 2](docs/readme-flow.svg)
 
@@ -32,11 +32,12 @@ That command exits 2. The same check on `templates/LOOP_CONTRACT.md` exits 0. Th
 
 | Output | Exit | Meaning |
 |---|---|---|
-| `PASS: <file> has all five Loop Contract headings` | 0 | All five decision headings appear in the file. |
-| `FAIL: missing headings:` and a list | 2 | One or more of the five headings is missing, and each missing one is listed. |
-| `not a file: <path>`, or the usage line, on stderr | 1 | The path is not a file, or the command did not get exactly one argument. |
+| `PASS: <file> has all five Loop Contract headings` | 0 | All five decision headings appear as heading lines, each with an answer under it. |
+| `FAIL: missing headings:` and a list | 2 | One or more of the five headings is missing, and each missing one is listed. A heading inside an HTML comment, inside a fenced code block or in the middle of a sentence is missing. |
+| `FAIL: empty sections:` and a list | 2 | A heading is there but has no answer under it, and each empty one is listed. Blank lines, HTML comments, a bold label ending in a colon and a table row with an empty cell are not answers. |
+| `not a file: <path>`, `not UTF-8: <path>`, or the usage line, on stderr | 1 | The path is not a file, the file is not UTF-8 text, or the command did not get exactly one argument. |
 
-A `PASS` shows that the contract has all five sections. It does not show that the answers under them are written or sound, because the blank template with its empty cells passes as well.
+A `PASS` shows that each of the five sections holds some answer. It does not show that the answers are sound.
 
 ## Use this when
 
@@ -55,8 +56,8 @@ Long work fails when the only memory is a chat window and the only stop conditio
 ## How it works
 
 1. Copy the blank contract into your project and fill in each section.
-2. Run the checker on your copy. It exits 0 when the five headings are there and 2 when any is missing.
-3. Put the same command in CI, as this repo does for its own template in [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+2. Run the checker on your copy. It exits 0 when the five sections are there and filled, and 2 when any is missing or empty.
+3. Put the same command in CI on your filled copy, so the job stops while any section is missing or empty.
 
 ```bash
 cp templates/LOOP_CONTRACT.md ../YOUR_PROJECT/LOOP_CONTRACT.md
@@ -83,7 +84,7 @@ The five decisions:
 | [templates/LOOP_CONTRACT.md](templates/LOOP_CONTRACT.md) | The blank five-decision contract |
 | [templates/sample_filled.md](templates/sample_filled.md) | A filled contract for an agent-loop-engine backlog |
 | [templates/sample_ci_triage.md](templates/sample_ci_triage.md) | A filled contract for a CI failure and pull-request triage loop |
-| [scripts/check_contract.py](scripts/check_contract.py) | The heading checker (exit 0, 2 or 1) |
+| [scripts/check_contract.py](scripts/check_contract.py) | The section checker (exit 0, 2 or 1) |
 | [examples/incomplete_contract.md](examples/incomplete_contract.md) | A contract with four headings missing, which exits 2 |
 
 Interview pack: [docs/INTERVIEW.md](docs/INTERVIEW.md), five points tied to commands. The limits of each claim are in [docs/RELIABILITY_CARD.md](docs/RELIABILITY_CARD.md).
@@ -91,9 +92,9 @@ Interview pack: [docs/INTERVIEW.md](docs/INTERVIEW.md), five points tied to comm
 ## Limits
 
 - It is not a runtime or an agent framework. It runs no loop and carries out no action, whereas [agent-loop-engine](https://github.com/homayoun-safarpour/agent-loop-engine) is the runnable companion.
-- The checker matches the five heading lines as exact text anywhere in the file. A renamed heading such as `## 1. Definition of done` fails, and a heading inside a code block still counts.
-- It does not read what is under a heading, so a contract with empty cells passes.
-- A file that is not valid UTF-8 stops the checker with a Python error (exit 1) instead of a short message.
+- The checker matches the five headings as whole lines of exact text. A renamed heading such as `## 1. Definition of done` fails.
+- It checks that each section holds an answer, not that the answer is right: one line of any text under a heading is enough.
+- It reads UTF-8 only. A file saved as UTF-16 (Notepad "Unicode") gets `not UTF-8: <path>` and exit 1.
 - The guide paraphrases five outside sources that are larger than it is. It extracts the rules they share and does not cover each one in full.
 - It has no dependencies, and CI runs the tests on Python 3.10, 3.11 and 3.12. Each exit code has a named test under `tests/`.
 
@@ -105,7 +106,7 @@ The contract maps onto [agent-loop-engine](https://github.com/homayoun-safarpour
 
 1. **Read the sources.** We read Anthropic's posts on building agents and on loops, Simon Willison's essay on agentic loops, cobusgreyling/loop-engineering, and the Ralph and harness-engineering projects, and kept the rules they share ([docs/FIELD_GUIDE.md](docs/FIELD_GUIDE.md)).
 2. **Wrote the contract.** We turned those rules into five decisions with fixed headings in `templates/LOOP_CONTRACT.md`, and filled two samples (an agent-loop-engine backlog and a CI triage loop).
-3. **Added the checker.** A standard-library script with three exit codes, each locked by a named test: `test_blank_contract_passes_check_script`, `test_truncated_contract_exits_2`, `test_missing_file_exits_1_with_stderr` and `test_readme_stranger_incomplete_contract_exits_2`.
+3. **Added the checker.** A standard-library script with three exit codes, each locked by a named test: `test_filled_samples_pass`, `test_blank_template_fails_with_empty_sections`, `test_truncated_contract_exits_2`, `test_utf16_file_exits_1_with_not_utf8_message`, `test_missing_file_exits_1_with_stderr` and `test_readme_stranger_incomplete_contract_exits_2`.
 
 ## Related tools
 

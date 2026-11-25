@@ -18,5 +18,12 @@ jobs:
         run: pip install pytest
       - name: Test contract checker
         run: pytest -q
-      - name: Dogfood blank template
-        run: python scripts/check_contract.py templates/LOOP_CONTRACT.md
+      - name: Filled samples pass the checker
+        run: |
+          python scripts/check_contract.py templates/sample_filled.md
+          python scripts/check_contract.py templates/sample_ci_triage.md
+      - name: The blank template is refused until it is filled
+        run: |
+          set +e
+          python scripts/check_contract.py templates/LOOP_CONTRACT.md
+          test $? -eq 2
