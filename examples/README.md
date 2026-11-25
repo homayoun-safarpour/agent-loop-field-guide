@@ -11,4 +11,4 @@ This repo is a field guide (templates + checker), not a runtime.
 python scripts/check_contract.py templates/sample_filled.md
 ```
 
-Exit `0` means required headings are present. Empty cells still mean you are prompting, not verifying.
+Exit `0` means the five required sections are present and each holds an answer. Exit `2` lists missing headings or empty sections, so the blank template exits `2`.
